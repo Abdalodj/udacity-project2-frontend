@@ -11,6 +11,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "engines": {
+    "node": "16.16.0",
+    "npm": "8.11.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "^11.0.5",
