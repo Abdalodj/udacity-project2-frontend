@@ -1,0 +1,15 @@
+<form [formGroup]="myUploadForm" (submit)="onSubmit($event)">
+  <ion-item>
+    <ion-label position="floating" color="primary">URL</ion-label>
+    <ion-input type="text" formControlName="url" required></ion-input>
+  </ion-item>
+  <ion-button 
+    color="primary" 
+    type="submit"
+    [disabled]="!myUploadForm.valid">
+    Process
+  </ion-button>
+</form>
+<div style="text-align: center; margin-bottom: 20px;" *ngIf="this.img" [innerHTML]="this.img">
+  
+</div>

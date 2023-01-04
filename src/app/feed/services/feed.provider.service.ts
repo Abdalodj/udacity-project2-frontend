@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FeedItem, feedItemMocks } from '../models/feed-item.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { ApiService } from '../../api/api.service';
 
@@ -9,6 +9,7 @@ import { ApiService } from '../../api/api.service';
 })
 export class FeedProviderService {
   currentFeed$: BehaviorSubject<FeedItem[]> = new BehaviorSubject<FeedItem[]>([]);
+  proccessedImg$: Subject<any> = new Subject<any>();
 
   constructor(private api: ApiService) { }
 
@@ -26,6 +27,19 @@ export class FeedProviderService {
     return res;
   }
 
+  getProccessedImg(imgUrl: string) {
+    this.api.customGet(`/filtered-image?url=${imgUrl}`).subscribe(
+      res => {
+        if (res) {
+          // console.log(res.data);
+          this.proccessedImg$.next(res.data)
+        }
+      }
+    ),
+    err => {
+      console.log(err);
+    }
+  }
 }
 
 // async getFeed() {

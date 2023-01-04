@@ -40,6 +40,11 @@ export class ApiService {
               throw e;
             });
   }
+  
+  customGet(endpoint): Observable<any> {
+    const url = `${API_HOST}${endpoint}`;
+    return this.http.get(url, {...this.httpOptions})
+  }
 
   post(endpoint, data): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
