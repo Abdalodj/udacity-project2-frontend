@@ -10,9 +10,12 @@ import { FeedUploadComponent } from './feed-upload/feed-upload.component';
 import { FeedUploadButtonComponent } from './feed-upload/feed-upload-button/feed-upload-button.component';
 
 import { FeedProviderService } from './services/feed.provider.service';
+import { ProccesImageComponent } from './procces-image/procces-image.component';
+import { ImagePreviewComponent } from './image-preview/image-preview.component';
+import { SafeResourceUrlPipe } from './pipes/safe-resource-url.pipe';
 
 const entryComponents = [FeedUploadComponent];
-const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, FeedUploadButtonComponent];
+const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, FeedUploadButtonComponent, ProccesImageComponent, ImagePreviewComponent, SafeResourceUrlPipe];
 
 @NgModule({
   imports: [
