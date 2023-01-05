@@ -10,6 +10,7 @@ import { ApiService } from '../../api/api.service';
 export class FeedProviderService {
   currentFeed$: BehaviorSubject<FeedItem[]> = new BehaviorSubject<FeedItem[]>([]);
   proccessedImg$: Subject<any> = new Subject<any>();
+  proccessedImgErr$: Subject<any> = new Subject<any>();
 
   constructor(private api: ApiService) { }
 
@@ -34,11 +35,13 @@ export class FeedProviderService {
           // console.log(res.data);
           this.proccessedImg$.next(res.data)
         }
+      },
+      err => {
+        console.log(err);
+        this.proccessedImgErr$.next(err);
       }
-    ),
-    err => {
-      console.log(err);
-    }
+    )
+    
   }
 }
 

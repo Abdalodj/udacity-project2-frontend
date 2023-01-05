@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { FeedProviderService } from '../services/feed.provider.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-image-preview',
@@ -40,6 +41,16 @@ export class ImagePreviewComponent implements OnInit, OnDestroy {
           this.img = res
           // this.img = this.arrayBufferToBase64(res);
           this.loadingController.dismiss()
+        }
+      )
+    );
+    this.subs.push(
+      this.feedService.proccessedImgErr$.subscribe(
+        err => {
+          if (err) {
+            this.loadingController.dismiss()
+            Swal.fire({title: 'Error', text: 'We got an server error.\nPlease contact the project admin!', icon: 'error'})
+          }
         }
       )
     )
